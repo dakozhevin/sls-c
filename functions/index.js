@@ -33,9 +33,14 @@ async function getFirestore() {
   return writeResult
 }
 
-app.get('/',async (request,response) => {
+app.get('/app', async (request, response) => {
   var db_result = await getFirestore();
-  response.render('index',{db_result});
+  // response.render('index', { db_result });
+  response.status(200).send(`<!doctype html>
+    <head>
+      <title>App</title>
+    </head>
+  </html>`);
 });
 exports.app = functions.https.onRequest(app);
 
